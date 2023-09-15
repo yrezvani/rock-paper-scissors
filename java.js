@@ -8,15 +8,11 @@ return (choice[(Math.floor(Math.random()*3))]);
 let computerSelection;
 let playerSelection;
 
-
-
-
 // One round function
 function playRound (computerSelection = getComputerChoice ()) {
     playerSelection = prompt('Please make a choice')
     playerSelection = (playerSelection.toLowerCase());
     playerSelection = (playerSelection[0].toUpperCase() + playerSelection.slice(1));
-    console.log(computerSelection);
 
     if (computerSelection === playerSelection) {
             return 'It\'s a draw';
@@ -27,15 +23,13 @@ function playRound (computerSelection = getComputerChoice ()) {
     } else if (computerSelection === 'Paper' && playerSelection === 'Rock') {
         return 'You lose. Paper beats Rock';
     } else if (computerSelection === 'Paper' && playerSelection === 'Scissors') {
-        return 'You win. Scissors beat Paper';
+        return 'You win. scissors beats Paper';
     } else if (computerSelection === 'Scissors' && playerSelection === 'Rock') {
         return 'You win. Rock beats Scissors';
     } else if (computerSelection === 'Scissors' && playerSelection === 'Paper') {
-        return 'You lose. Scissors beat Paper'; 
+        return 'You lose. scissors beats Paper'; 
     }
     }
-
-    
 
     let playerWins = 0;
     let computerWins = 0;
@@ -45,7 +39,7 @@ function playRound (computerSelection = getComputerChoice ()) {
     
     let result = playRound (computerSelection);
     console.log(result);
-    if (result === 'You lose. Scissors beat Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
+    if (result === 'You lose. scissors beats Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
         computerWins += 1;
     } else if (result === 'It\'s a draw') {
         draws += 1;
@@ -56,7 +50,7 @@ function playRound (computerSelection = getComputerChoice ()) {
      // Round two
     result = playRound (computerSelection);
     console.log(result);
-    if (result === 'You lose. Scissors beat Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
+    if (result === 'You lose. scissors beats Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
         computerWins += 1;
     } else if (result === 'It\'s a draw') {
         draws += 1;
@@ -67,7 +61,7 @@ function playRound (computerSelection = getComputerChoice ()) {
     // Round three
     result = playRound (computerSelection);
     console.log(result);
-    if (result === 'You lose. Scissors beat Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
+    if (result === 'You lose. scissors beats Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
         computerWins += 1;
     } else if (result === 'It\'s a draw') {
         draws += 1;
@@ -78,7 +72,7 @@ function playRound (computerSelection = getComputerChoice ()) {
     // Round four
     result = playRound (computerSelection);
     console.log(result);
-    if (result === 'You lose. Scissors beat Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
+    if (result === 'You lose. scissors beats Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
         computerWins += 1;
     } else if (result === 'It\'s a draw') {
         draws += 1;
@@ -89,7 +83,7 @@ function playRound (computerSelection = getComputerChoice ()) {
     // Round five
     result = playRound (computerSelection);
     console.log(result);
-    if (result === 'You lose. Scissors beat Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
+    if (result === 'You lose. scissors beats Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
         computerWins += 1;
     } else if (result === 'It\'s a draw') {
         draws += 1;
@@ -97,7 +91,14 @@ function playRound (computerSelection = getComputerChoice ()) {
         playerWins += 1;
     }
 
-    console.log('Your wins = ' + playerWins);
-    console.log('Computer wins = ' + computerWins);
-    console.log('Draws = ' + draws);
+    // Final result
+    if (playerWins > computerWins) {
+        console.log('You are the ultimate winner. Congrats!');
+    } else if (computerWins > playerWins) {
+        console.log('Computer is the ultimate winner. Better luck next time!');
+    } else {
+        console.log('No ultimate winner. It\'s a draw!');
+    }
+
+
     
