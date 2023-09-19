@@ -5,100 +5,149 @@ function getComputerChoice () {
 return (choice[(Math.floor(Math.random()*3))]);
 } 
 
-let computerSelection;
+let playerWins = 0;
+let computerWins = 0;
+let draws = 0;
+let computerSelection = getComputerChoice();
 let playerSelection;
+const pWins = document.querySelector('.pwins');
+const cWins = document.querySelector('.cwins');
+const result = document.querySelector('.result');
 
 // One round function
-function playRound (computerSelection = getComputerChoice ()) {
-    playerSelection = prompt('Please make a choice')
+function playRound (computerSelection, playerSelection) {
     playerSelection = (playerSelection.toLowerCase());
     playerSelection = (playerSelection[0].toUpperCase() + playerSelection.slice(1));
-
+    
     if (computerSelection === playerSelection) {
-            return 'It\'s a draw';
+        draws += 1;    
+        displayResult ('It\'s a draw');
+
 }   else if (computerSelection === 'Rock' && playerSelection === 'Paper') {
-        return 'You win. Paper beats Rock';
+        playerWins += 1;    
+        displayResult ('You win! Paper beats rock');
 }   else if (computerSelection === 'Rock' && playerSelection === 'Scissors') {
-        return 'You lose. Rock beats Scissors';
+        computerWins +=1;
+        displayResult ('You lose! Rock beats Scissors');
     } else if (computerSelection === 'Paper' && playerSelection === 'Rock') {
-        return 'You lose. Paper beats Rock';
+        computerWins += 1;
+        displayResult ('You lose! Paper beats rock');
     } else if (computerSelection === 'Paper' && playerSelection === 'Scissors') {
-        return 'You win. scissors beats Paper';
+        playerWins += 1;
+        displayResult ('You win! Scissors beats Paper');
     } else if (computerSelection === 'Scissors' && playerSelection === 'Rock') {
-        return 'You win. Rock beats Scissors';
+        playerWins += 1;
+        displayResult ('You win! Paper beats rock');
     } else if (computerSelection === 'Scissors' && playerSelection === 'Paper') {
-        return 'You lose. scissors beats Paper'; 
+        computerWins +=1;
+        displayResult ('You lose! Scissors beats Paper'); 
     }
     }
 
-    let playerWins = 0;
-    let computerWins = 0;
-    let draws = 0;
 
-    // Round one
+    const rockBtn = document.querySelector('.rock');
+    const paperBtn = document.querySelector('.paper');
+    const scissorsBtn = document.querySelector('.scissors');
+
+    function displayResult (str) {
+        result.textContent = str;
+    }
+
+    function declareWinner () {
+        if (computerWins === 5) {
+            displayResult ('Oh no! You lost! Better luck next time.')
+        } else if (playerWins === 5) {
+            displayResult ('You won! Congratulations!')
+        }
+    }
+
+    // Event listener function
+    function rock () {
+        playRound (getComputerChoice(), 'rock');
+        cWins.textContent = `Computer wins = ${computerWins}`
+        pWins.textContent = `Player Score = ${playerWins}`
+        if (computerWins === 5 || playerWins === 5) {
+            declareWinner();
+        }
+        }
     
-    let result = playRound (computerSelection);
-    console.log(result);
-    if (result === 'You lose. scissors beats Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
-        computerWins += 1;
-    } else if (result === 'It\'s a draw') {
-        draws += 1;
-    } else {
-        playerWins += 1;
-    }
+    function paper () {
+        playRound (getComputerChoice(), 'paper');
+        cWins.textContent = `Computer wins = ${computerWins}`
+        pWins.textContent = `Player Score = ${playerWins}`
+        }
+    
+    function scissors () {
+        playRound (getComputerChoice(), 'scissors');
+        cWins.textContent = `Computer wins = ${computerWins}`
+        pWins.textContent = `Player Score = ${playerWins}`
+        }   
+    
 
-     // Round two
-    result = playRound (computerSelection);
-    console.log(result);
-    if (result === 'You lose. scissors beats Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
-        computerWins += 1;
-    } else if (result === 'It\'s a draw') {
-        draws += 1;
-    } else {
-        playerWins += 1;
-    }
 
-    // Round three
-    result = playRound (computerSelection);
-    console.log(result);
-    if (result === 'You lose. scissors beats Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
-        computerWins += 1;
-    } else if (result === 'It\'s a draw') {
-        draws += 1;
-    } else {
-        playerWins += 1;
-    }
+    
 
-    // Round four
-    result = playRound (computerSelection);
-    console.log(result);
-    if (result === 'You lose. scissors beats Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
-        computerWins += 1;
-    } else if (result === 'It\'s a draw') {
-        draws += 1;
-    } else {
-        playerWins += 1;
-    }
 
-    // Round five
-    result = playRound (computerSelection);
-    console.log(result);
-    if (result === 'You lose. scissors beats Paper' || result === 'You lose. Paper beats Rock' || result === 'You lose. Rock beats Scissors') {
-        computerWins += 1;
-    } else if (result === 'It\'s a draw') {
-        draws += 1;
-    } else {
-        playerWins += 1;
-    }
+    // Event listeners
+    rockBtn.addEventListener("click", rock);
+        if (computerWins === 5 || playerWins === 5) {
+            declareWinner ();
+        }
+    paperBtn.addEventListener('click', paper);
+    scissorsBtn.addEventListener('click', scissors);
 
+    
+    const div = document.querySelector('div');
+    if (playerWins === 5) {
+        div.textContent = 'You are the ultimate winner!';
+    } else if (computerWins === 5) {
+        div.textContent = 'Computer is the ultimate winner.'
+    }
+    
+    
+    
+    
+    // function gameResult () {
+    //     if (playerWins > computerWins) {
+    //         result.textContent = 'You win!';
+    //         } else if (playerWins < computerWins) {
+    //             result.textContent = 'You lose! Better luck next timer';
+    //         } else {
+    //             result.textContent = 'It\'s a draw!';
+    //         } 
+
+    // }
+    
+    // rockBtn.addEventListener("click", gameResult);
+    // paperBtn.addEventListener("click", gameResult);
+    // scissorsBtn.addEventListener("click", gameResult);
+    
     // Final result
-    if (playerWins > computerWins) {
-        console.log('You are the ultimate winner. Congrats!');
-    } else if (computerWins > playerWins) {
-        console.log('Computer is the ultimate winner. Better luck next time!');
-    } else {
-        console.log('No ultimate winner. It\'s a draw!');
-    }
-
-
+    // if (playerWins > computerWins) {
+    //     result.textContent = 'You win!';
+    //     } else if (playerWins < computerWins) {
+    //         result.textContent = 'You lose! Better luck next timer';
+    //     } else {
+    //         result.textContent = 'It\'s a draw!';
+    //     } 
+//    rockBtn.addEventListener("click") {
+        
     
+    // paperBtn.addEventListener('click', paper);
+    //     if (playerWins > computerWins) {
+    //         result.textContent = 'You win!';
+    //         } else if (playerWins < computerWins) {
+    //             result.textContent = 'You lose! Better luck next timer';
+    //         } else {
+    //             result.textContent = 'It\'s a draw!';
+    //         } 
+    // scissorsBtn.addEventListener('click', scissors);
+    //     if (playerWins > computerWins) {
+    //         result.textContent = 'You win!';
+    //         } else if (playerWins < computerWins) {
+    //             result.textContent = 'You lose! Better luck next timer';
+    //         } else {
+    //             result.textContent = 'It\'s a draw!';
+    //         } 
+    
+
