@@ -1,0 +1,41 @@
+.btncontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 10px;
+}
+
+button {
+    margin: 10px;
+    width: 120px;
+    height: 40px;
+    font-size: large;
+    color: aqua;
+    background-color: greenyellow;
+    border-radius: 8px;
+    
+}
+
+.score-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+p {
+    margin: 10px;
+    
+}
+
+h3 {
+    color: coral;
+    font-size: 40px;
+}
+
+.result-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
